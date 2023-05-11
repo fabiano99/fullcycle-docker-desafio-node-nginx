@@ -27,14 +27,12 @@ let names = []
 let template = '<h1>Fullcycle</h1>'
 connection.query(sqlQueryNames, function (err, result, fields) {
     if (err) throw err;
-    console.log(result);
     names = result
 
     template = `
     <h1>Fullcycle</h1>
     <ol>
      ${names.map(name => {
-        console.log(name.name)
         return `<li> ${name.name} </li>`
      }).join(' ')}
     </ol>`
