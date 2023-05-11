@@ -25,7 +25,6 @@ connection.query(sql)
 const sqlQueryNames = "SELECT * FROM people"
 let names = []
 let template = '<h1>Fullcycle</h1>'
-connection.end()
 connection.query(sqlQueryNames, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
@@ -41,6 +40,7 @@ connection.query(sqlQueryNames, function (err, result, fields) {
     </ol>`
   })
 
+connection.end()
 app.get('/', (req, res) => {
 
     res.send(template)
