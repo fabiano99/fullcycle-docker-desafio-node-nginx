@@ -11,12 +11,21 @@ const config = {
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 
+const sqlCreatetable = `
+    CREATE TABLE IF NOT EXISTS people(
+    id int not null auto_increment,
+    name varchar(255),
+    primary key(id)
+    ) ENGINE=MEMORY`
+
 const sql = `INSERT INTO people(name) values('fabiano')`
+connection.query(sqlCreatetable)
 connection.query(sql)
 
 const sqlQueryNames = "SELECT * FROM people"
 let names = []
 let template = '<h1>Fullcycle</h1>'
+connection.end()
 connection.query(sqlQueryNames, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
